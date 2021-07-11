@@ -1,0 +1,7 @@
+{
+    "name": "nodejs + redis",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [8080],
+  }
