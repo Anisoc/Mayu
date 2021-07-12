@@ -1,8 +1,19 @@
 import * as express from "express";
-const app = express();
+import { posts } from "./controller/posts";
+import { client } from "./redis";
 
-app.get('/', function(req, res){
-    res.send("Hello world!!!");
- });
- 
- app.listen(8080);
+const main = async () => {
+  await client.connect();
+  const app = express();
+  const port = 8080;
+
+  app.get("/posts", posts);
+
+  app.listen(port);
+};
+
+process.on("exit", async () => {
+  client.disconnect;
+});
+
+main();

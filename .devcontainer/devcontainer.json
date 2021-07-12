@@ -8,6 +8,6 @@
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
       "humao.rest-client",
-      "Dunn.redis"
+      "cweijan.vscode-mysql-client2"
     ],
   }
