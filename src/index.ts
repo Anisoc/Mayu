@@ -13,7 +13,7 @@ const main = async () => {
 };
 
 process.on("exit", async () => {
-  await client.disconnect;
+  client.disconnect;
 });
 
 main();
