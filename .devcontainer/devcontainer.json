@@ -3,5 +3,11 @@
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspace",
-    "forwardPorts": [8080],
+    "forwardPorts": [8080, 6379],
+    "extensions": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "humao.rest-client",
+      "Dunn.redis"
+    ],
   }
