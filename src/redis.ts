@@ -16,3 +16,7 @@ export const set = async (k, p, v) => {
 export const get = async (k, p) => {
   return await client.get(k, p);
 };
+
+export const arrappend = async (k, p, j) => {
+  return await client.arrappend(k, p, j);
+};
