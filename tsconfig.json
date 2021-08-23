@@ -6,6 +6,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./build",
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
@@ -13,6 +14,8 @@
       "@controller/*": ["controller/*"],
       "@init": ["init/index"],
       "@init/*": ["init/*"],
+      "@auth": ["controller/auth/index"],
+      "@auth/*": ["controller/auth/*"],
       "@redis": ["redis"]
     }
   },
