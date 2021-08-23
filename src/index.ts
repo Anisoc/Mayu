@@ -1,15 +1,22 @@
 import * as express from "express";
 import { posts } from "@controller/posts";
 import { client } from "@redis";
-import { postsInit, tokensInit } from "@init";
+import { postsInit, tokensInit, usersInit } from "@init";
+import { login, register } from "@auth";
+
 const main = async () => {
   await client.connect();
   const app = express();
   const port = 8080;
 
-  app.get("/posts", posts);
   tokensInit();
   postsInit();
+  usersInit();
+
+  app.get("/posts", posts);
+  app.post("/auth/login", login);
+  app.post("/auth/register", register);
+
   app.listen(port);
 };
 
