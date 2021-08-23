@@ -1,6 +1,6 @@
 import * as express from "express";
 import { posts } from "@controller/posts";
-import { client, arrappend, get, set } from "@redis";
+import { client } from "@redis";
 import { postsInit, tokensInit } from "@init";
 const main = async () => {
   await client.connect();
