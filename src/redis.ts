@@ -18,5 +18,5 @@ export const get = async (k, p) => {
 };
 
 export const arrappend = async (k, p, j) => {
-  return await client.arrappend(k, p, j);
+  return await client.arrappend(k, j, p);
 };

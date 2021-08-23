@@ -4,8 +4,8 @@
   "description": "backend",
   "main": "src/index.ts",
   "scripts": {
-    "start": "npx ts-node src/index.ts",
-    "dev": "npx ts-node-dev --poll --respawn ./src/index.ts"
+    "start": "npx ts-node -r tsconfig-paths/register src/index.ts",
+    "dev": "npx ts-node-dev --poll --respawn -r tsconfig-paths/register ./src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "standard-version": "^9.3.0",
     "ts-node": "10.1.0",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   }
 }
