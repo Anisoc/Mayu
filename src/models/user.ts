@@ -1,22 +1,26 @@
-import Ajv, { JSONSchemaType } from "ajv";
-const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+import ajv from "@models";
+import { JSONSchemaType } from "ajv";
 
-const schema = {
+interface user {
+  id: string;
+  email: string;
+  username: string;
+  password: string;
+  admin: boolean;
+}
+
+const schema: JSONSchemaType<user> = {
   type: "object",
   properties: {
-    foo: { type: "integer" },
-    bar: { type: "string" },
+    id: { type: "string", format: "uuid" },
+    email: { type: "string", format: "email" },
+    username: { type: "string", pattern: "^[a-zA-z0-9]{3,}$" },
+    password: { type: "string", format: "password" },
+    admin: { type: "boolean" },
   },
-  required: ["foo"],
+  required: ["id", "email", "password", "username", "admin"],
   additionalProperties: false,
 };
 
-const validate = ajv.compile(schema);
-
-const data = {
-  foo: 1,
-  bar: "abc",
-};
-
-const valid = validate(data);
-if (!valid) console.log(validate.errors);
+// validate is a type guard for MyData - type is inferred from schema type
+export const user = ajv.compile(schema);

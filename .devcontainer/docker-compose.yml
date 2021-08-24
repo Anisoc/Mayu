@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    image: node:16.4.2-buster
+    image: node:16.7.0-buster
     restart: always
     volumes:
       - ../:/workspace:cached
@@ -16,8 +16,8 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-    environment:
-      - NODE_ENV=production
+    # environment:
+    #  - NODE_ENV=production
 
   db:
     image: redislabs/rejson

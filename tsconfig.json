@@ -17,6 +17,8 @@
       "@init/*": ["init/*"],
       "@auth": ["controller/auth/index"],
       "@auth/*": ["controller/auth/*"],
+      "@models": ["models/index"],
+      "@models/*": ["models/*"],
       "@redis": ["redis"]
     }
   },

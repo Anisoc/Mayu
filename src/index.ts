@@ -3,6 +3,7 @@ import { posts } from "@controller/posts";
 import { client } from "@redis";
 import { postsInit, tokensInit, usersInit } from "@init";
 import { login, register } from "@auth";
+import nocache from "nocache";
 
 const main = async () => {
   await client.connect();
@@ -12,6 +13,11 @@ const main = async () => {
   tokensInit();
   postsInit();
   usersInit();
+
+  app.set("etag", false);
+  app.use(nocache());
+  app.use(express.json());
+  app.use(express.urlencoded());
 
   app.get("/posts", posts);
   app.post("/auth/login", login);

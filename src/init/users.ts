@@ -9,6 +9,7 @@ export const usersInit = async () => {
       let obj = {
         id: uuidv4(),
         email: `${i}@gmail.com`,
+        username: `${i}`,
         password: `${i}`,
         admin: 1,
       };
