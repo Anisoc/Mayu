@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
 import { posts } from "@controller/posts";
-import { client } from "@redis";
+import { disconnect, connect } from "@redis";
 import { postsInit, tokensInit, usersInit } from "@init";
 import { login, register } from "@auth";
 import nocache from "nocache";
 
 const main = async () => {
-  await client.connect();
+  await connect();
   const app = express();
   const port = 8080;
 
@@ -27,7 +27,7 @@ const main = async () => {
 };
 
 process.on("exit", async () => {
-  client.disconnect;
+  disconnect;
 });
 
 main();

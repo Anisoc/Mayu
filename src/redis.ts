@@ -22,6 +22,14 @@ export const arrappend = async (k, p, j) => {
   return await client.arrappend(k, j, p);
 };
 
+export const connect = async () => {
+  return await client.connect();
+};
+
+export const disconnect = async () => {
+  return await client.disconnect();
+};
+
 export const getUserById = async (id) => {
   let users = JSON.parse(await get("users", "."));
   return await jp.query(users, `$[?(@.id=="${id}")]`);
