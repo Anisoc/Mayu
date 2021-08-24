@@ -14,6 +14,4 @@ export const postsInit = async () => {
       await arrappend("posts", ".", [JSON.stringify(obj)]);
     }
   }
-  posts = JSON.parse(await get("posts", "."));
-  console.log(posts);
 };
