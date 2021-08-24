@@ -6,5 +6,4 @@ export const emailsInit = async () => {
   if (!emails || !emails.length) {
     await set("emails", ".", "[]");
   }
-  emails = JSON.parse(await get("emails", "."));
 };
