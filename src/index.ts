@@ -1,4 +1,4 @@
-import * as express from "express";
+import express, { Request, Response } from "express";
 import { posts } from "@controller/posts";
 import { client } from "@redis";
 import { postsInit, tokensInit, usersInit } from "@init";

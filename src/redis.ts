@@ -1,5 +1,5 @@
 import { ReJSON } from "redis-modules-sdk";
-import * as expect from "expect";
+import expect from "expect";
 
 export const client = new ReJSON({
   host: "localhost",
