@@ -16,9 +16,8 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-    # environment:
-    #  - NODE_ENV=production
-
+    env_file:
+      - .env
   db:
     image: redislabs/rejson
     restart: always
