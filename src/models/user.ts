@@ -7,6 +7,7 @@ interface user {
   username: string;
   password: string;
   admin: boolean;
+  createdAt: string;
 }
 
 const schema: JSONSchemaType<user> = {
@@ -17,8 +18,9 @@ const schema: JSONSchemaType<user> = {
     username: { type: "string", pattern: "^[a-zA-z0-9]{3,}$" },
     password: { type: "string", format: "password" },
     admin: { type: "boolean" },
+    createdAt: { type: "string", format: "date-time" },
   },
-  required: ["id", "email", "password", "username", "admin"],
+  required: ["id", "email", "password", "username", "admin", "createdAt"],
   additionalProperties: false,
 };
 

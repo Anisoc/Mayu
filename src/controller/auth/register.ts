@@ -2,17 +2,30 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { user as validate } from "@models";
 import { getUserByEmail, getUserByUsername, arrappend } from "@redis";
+import bcrypt from "bcrypt";
 
 export const register: RequestHandler = async (req, res) => {
   let user = req.body;
-  user = { id: uuidv4(), ...user, admin: false };
+  user = {
+    id: uuidv4(),
+    ...user,
+    admin: false,
+    createdAt: `${new Date().toISOString()}`,
+  };
   if (validate(user)) {
     let query = await getUserByEmail(user.email);
     if (query.length < 1) {
       query = await getUserByUsername(user.username);
       if (query.length < 1) {
+        user.password = bcrypt.hashSync(user.password, 10);
         await arrappend("users", ".", JSON.stringify(user));
-        res.json(user);
+        let obj = {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          createdAt: user.createdAt,
+        };
+        res.json(obj);
       } else {
         res.json({ error: "Username is already taken" });
       }
