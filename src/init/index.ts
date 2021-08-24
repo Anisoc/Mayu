@@ -1,4 +1,11 @@
-export { postsInit } from "@init/posts";
-export { tokensInit } from "@init/tokens";
-export { usersInit } from "@init/users";
-export { emailsInit } from "@init/emails";
+import { postsInit } from "@init/posts";
+import { tokensInit } from "@init/tokens";
+import { usersInit } from "@init/users";
+import { emailsInit } from "@init/emails";
+
+export const init = async () => {
+  tokensInit();
+  postsInit();
+  emailsInit();
+  usersInit();
+};
