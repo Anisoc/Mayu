@@ -1,23 +1,25 @@
 import { RequestHandler } from "express";
-import { getUserByEmail, arrappend, delToken } from "@redis";
-import bcrypt from "bcrypt";
+import { getUserById, getToken } from "@redis";
 import jwt from "jsonwebtoken";
 
-export const login: RequestHandler = async (req, res) => {
-  const user = await getUserByEmail(req.body.email);
+export const refresh: RequestHandler = async (req, res) => {
+  jwt.verify(req.body.refreshToken, process.env.SEED, async (err, token) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
 
-  if (user) {
-    const result = await bcrypt.compare(req.body.password, user[0].password);
-    if (result) {
+    let user = await getUserById(token.sub);
+    console.log(token);
+    console.log(user);
+
+    if (user && getToken(token)) {
       const at = jwt.sign({ sub: user[0].id }, process.env.SEED, {
         expiresIn: "120m",
       });
+
       const rt = jwt.sign({ sub: user[0].id }, process.env.SEED, {
         expiresIn: "7d",
       });
-
-      arrappend("tokens", ".", [JSON.stringify(rt)]);
-      await delToken(rt);
 
       return res.json({
         id: user[0].id,
@@ -28,6 +30,7 @@ export const login: RequestHandler = async (req, res) => {
         refreshToken: rt,
       });
     }
-  }
-  return res.json({ error: "Oops, you typed something incorrectly!" });
+
+    return res.status(403);
+  });
 };

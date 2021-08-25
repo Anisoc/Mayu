@@ -1,8 +1,7 @@
-POST http://localhost:8080/auth/register HTTP/1.1
+POST http://localhost:8080/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "222ssmpl2ew",
     "email": "331922@gmail.com",
     "password": "hello"
 }

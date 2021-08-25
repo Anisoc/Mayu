@@ -32,15 +32,25 @@ export const disconnect = async () => {
 
 export const getUserById = async (id) => {
   let users = JSON.parse(await get("users", "."));
-  return await jp.query(users, `$[?(@.id=="${id}")]`);
+  return jp.query(users, `$[?(@.id=="${id}")]`);
 };
 
 export const getUserByEmail = async (email) => {
   let users = JSON.parse(await get("users", "."));
-  return await jp.query(users, `$[?(@.email=="${email}")]`);
+  return jp.query(users, `$[?(@.email=="${email}")]`);
 };
 
 export const getUserByUsername = async (username) => {
   let users = JSON.parse(await get("users", "."));
-  return await jp.query(users, `$[?(@.username=="${username}")]`);
+  return jp.query(users, `$[?(@.username=="${username}")]`);
+};
+
+export const getToken = async (token) => {
+  let tokens = JSON.parse(await get("tokens", "."));
+  let res = jp.paths(tokens, `$[?(@=="${token}")]`);
+  return parseInt(`${res[0][1]}`);
+};
+
+export const delToken = async (token) => {
+  return await client.arrpop("tokens", await getToken(token), ".");
 };

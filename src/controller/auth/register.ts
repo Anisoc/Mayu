@@ -2,6 +2,7 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { user as validate } from "@models";
 import { getUserByEmail, getUserByUsername, arrappend } from "@redis";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 export const register: RequestHandler = async (req, res) => {
@@ -13,6 +14,13 @@ export const register: RequestHandler = async (req, res) => {
     createdAt: `${new Date().toISOString()}`,
   };
   if (validate(user)) {
+    const at = jwt.sign({ sub: user[0].id }, process.env.SEED, {
+      expiresIn: "120m",
+    });
+    const rt = jwt.sign({ sub: user[0].id }, process.env.SEED, {
+      expiresIn: "7d",
+    });
+
     let query = await getUserByEmail(user.email);
     if (query.length < 1) {
       query = await getUserByUsername(user.username);
@@ -24,6 +32,8 @@ export const register: RequestHandler = async (req, res) => {
           email: user.email,
           username: user.username,
           createdAt: user.createdAt,
+          accessToken: at,
+          refreshToken: rt,
         };
         res.json(obj);
       } else {

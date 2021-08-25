@@ -4,6 +4,7 @@ import { disconnect, connect } from "@redis";
 import { init } from "@init";
 import { login, register } from "@auth";
 import nocache from "nocache";
+import eJwt from "express-jwt";
 
 const main = async () => {
   await connect();
@@ -16,6 +17,13 @@ const main = async () => {
   app.use(nocache());
   app.use(express.json());
   app.use(express.urlencoded());
+
+  app.use(
+    eJwt({
+      secret: process.env.SEED,
+      algorithms: ["HS256"],
+    }).unless({ path: ["/auth/login", "/auth/register"] })
+  );
 
   app.get("/posts", posts);
   app.post("/auth/login", login);
