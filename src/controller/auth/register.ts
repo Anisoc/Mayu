@@ -43,6 +43,6 @@ export const register: RequestHandler = async (req, res) => {
       res.json({ error: "Email is already taken" });
     }
   } else {
-    console.log(validate.errors);
+    console.log(isUser.errors);
   }
 };
