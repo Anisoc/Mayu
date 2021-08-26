@@ -14,10 +14,10 @@ export const register: RequestHandler = async (req, res) => {
     createdAt: `${new Date().toISOString()}`,
   };
   if (validate(user)) {
-    const at = jwt.sign({ sub: user[0].id }, process.env.SEED, {
+    const at = jwt.sign({ sub: user.id }, process.env.SEED, {
       expiresIn: "120m",
     });
-    const rt = jwt.sign({ sub: user[0].id }, process.env.SEED, {
+    const rt = jwt.sign({ sub: user.id }, process.env.SEED, {
       expiresIn: "7d",
     });
 
