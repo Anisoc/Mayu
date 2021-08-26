@@ -31,26 +31,30 @@ export const disconnect = async () => {
 };
 
 export const getUserById = async (id) => {
-  let users = JSON.parse(await get("users", "."));
+  const users = JSON.parse(await get("users", "."));
   return jp.query(users, `$[?(@.id=="${id}")]`);
 };
 
 export const getUserByEmail = async (email) => {
-  let users = JSON.parse(await get("users", "."));
+  const users = JSON.parse(await get("users", "."));
   return jp.query(users, `$[?(@.email=="${email}")]`);
 };
 
 export const getUserByUsername = async (username) => {
-  let users = JSON.parse(await get("users", "."));
+  const users = JSON.parse(await get("users", "."));
   return jp.query(users, `$[?(@.username=="${username}")]`);
 };
 
 export const getToken = async (token) => {
-  let tokens = JSON.parse(await get("tokens", "."));
-  let res = jp.paths(tokens, `$[?(@=="${token}")]`);
-  return parseInt(`${res[0][1]}`);
+  const tokens = JSON.parse(await get("tokens", "."));
+  const res = jp.paths(tokens, `$[?(@=="${token}")]`);
+  const index = parseInt(`${res[0][1]}`);
+  if (typeof index === "number" && index % 1 === 0) return index;
+  return [];
 };
 
-export const delToken = async (token) => {
-  return await client.arrpop("tokens", await getToken(token), ".");
+export const delToken = async (index) => {
+  if (typeof index === "number" && index % 1 === 0)
+    return await client.arrpop("tokens", index, ".");
+  throw { error: "incorrect type" };
 };
