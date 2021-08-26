@@ -3,8 +3,8 @@ import expect from "expect";
 import jp from "jsonpath";
 
 export const client = new ReJSON({
-  host: "localhost",
-  port: 6379,
+  host: process.env.REDIS_ADDR,
+  port: process.env.REDIS_PORT,
 });
 
 export const set = async (k, p, v) => {
