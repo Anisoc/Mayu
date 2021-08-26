@@ -19,7 +19,11 @@
       "@auth/*": ["controller/auth/*"],
       "@models": ["models/index"],
       "@models/*": ["models/*"],
-      "@redis": ["redis"]
+      "@posts": ["controller/admin/posts/index"],
+      "@posts/*": ["controller/admin/posts/*"],
+      "@admin": ["controller/admin/index"],
+      "@admin/*": ["controller/admin/*"],
+      "@redis": ["database/redis"]
     }
   },
   "include": ["./src"]
