@@ -1,7 +1,7 @@
 import ajv from "@models";
 import { JSONSchemaType } from "ajv";
 
-interface user {
+interface User {
   id: string;
   email: string;
   username: string;
@@ -10,7 +10,7 @@ interface user {
   createdAt: string;
 }
 
-const schema: JSONSchemaType<user> = {
+const schema: JSONSchemaType<User> = {
   type: "object",
   properties: {
     id: { type: "string", format: "uuid" },
