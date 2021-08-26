@@ -3,6 +3,7 @@ import { posts } from "@controller/posts";
 import { disconnect, connect } from "@redis";
 import { init } from "@init";
 import { login, register, refresh } from "@auth";
+import { post } from "@posts";
 import nocache from "nocache";
 import eJwt from "express-jwt";
 
@@ -31,6 +32,7 @@ const main = async () => {
   app.post("/auth/login", login);
   app.post("/auth/register", register);
   app.post("/auth/refresh", refresh);
+  app.post("/admin/post", post);
 
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
