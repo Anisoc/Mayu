@@ -1,0 +1,7 @@
+POST http://localhost:8080/admin/post HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZTY4NTlkNC0zNzM2LTQxMmUtOTM2My0xYTk4ODFkMWE0NGQiLCJpYXQiOjE2MzAwMDEzMDUsImV4cCI6MTYzMDAwODUwNX0.pn6wxCHTauCIcprzB53K1oeCYkWPR0lLMyO9WLdeBIc
+content-type: application/json
+
+{
+    "hello": "hello"
+}
