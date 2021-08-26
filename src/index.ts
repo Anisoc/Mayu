@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { posts } from "@controller/posts";
 import { disconnect, connect } from "@redis";
 import { init } from "@init";
-import { login, register } from "@auth";
+import { login, register, refresh } from "@auth";
 import nocache from "nocache";
 import eJwt from "express-jwt";
 
@@ -22,12 +22,13 @@ const main = async () => {
     eJwt({
       secret: process.env.SEED,
       algorithms: ["HS256"],
-    }).unless({ path: ["/auth/login", "/auth/register"] })
+    }).unless({ path: ["/auth/login", "/auth/register", "/auth/refresh"] })
   );
 
   app.get("/posts", posts);
   app.post("/auth/login", login);
   app.post("/auth/register", register);
+  app.post("/auth/refresh", refresh);
 
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
