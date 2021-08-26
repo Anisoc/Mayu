@@ -6,7 +6,7 @@ import { isUser } from "@models";
 import jwt from "jsonwebtoken";
 
 export const post: RequestHandler = async (req, res) => {
-  let t = req?.headers?.authorization?.split(" ").reverse().shift();
+  const t = req?.headers?.authorization?.split(" ").reverse().shift();
   await jwt.verify(t, process.env.SEED, async (err, token) => {
     if (token.sub) {
       const user = await getUserById(token.sub);
