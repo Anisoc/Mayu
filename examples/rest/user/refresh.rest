@@ -1,6 +1,0 @@
-POST http://localhost:8080/auth/refresh HTTP/1.1
-content-type: application/json
-
-{
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZTY4NTlkNC0zNzM2LTQxMmUtOTM2My0xYTk4ODFkMWE0NGQiLCJpYXQiOjE2Mjk5OTMxMTksImV4cCI6MTYzMDU5NzkxOX0.VKzZSKlbQaaR1xfncCJdj7My_0A77HTLmVNxc31Xoa8"
-}
