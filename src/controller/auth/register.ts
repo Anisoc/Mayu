@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { user as validate } from "@models";
+import { user as isUser } from "@models";
 import { getUserByEmail, getUserByUsername, arrappend } from "@redis";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -13,7 +13,7 @@ export const register: RequestHandler = async (req, res) => {
     admin: false,
     createdAt: `${new Date().toISOString()}`,
   };
-  if (validate(user)) {
+  if (isUser(user)) {
     const at = jwt.sign({ sub: user.id }, process.env.SEED, {
       expiresIn: "120m",
     });

@@ -1,7 +1,8 @@
 import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { post as validate } from "@models";
+import { post as isPost } from "@models";
 import { getUserById, arrappend } from "@redis";
+import { user as isUser } from "@models";
 import jwt from "jsonwebtoken";
 
 export const post: RequestHandler = async (req, res) => {
@@ -9,6 +10,8 @@ export const post: RequestHandler = async (req, res) => {
   await jwt.verify(t, process.env.SEED, async (err, token) => {
     if (token.sub) {
       const user = await getUserById(token.sub);
+      if (isUser(user)) {
+      }
       res.json(user);
     }
   });
