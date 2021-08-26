@@ -22,7 +22,9 @@ const main = async () => {
     eJwt({
       secret: process.env.SEED,
       algorithms: ["HS256"],
-    }).unless({ path: ["/auth/login", "/auth/register", "/auth/refresh"] })
+    }).unless({
+      path: ["/auth/login", "/auth/register", "/auth/refresh", "posts"],
+    })
   );
 
   app.get("/posts", posts);
