@@ -1,15 +1,18 @@
 import ajv from "@models";
 import { JSONSchemaType } from "ajv";
-
-interface post {
+interface Post {
   id: string;
   createdBy: string;
   content: string;
   timestamp: string;
-  platforms?: object;
+  platforms?: {
+    discord?: string;
+    facebook?: string;
+    github?: string;
+  };
 }
 
-const schema: JSONSchemaType<post> = {
+const schema: JSONSchemaType<Post> = {
   type: "object",
   properties: {
     id: { type: "string", format: "uuid" },
