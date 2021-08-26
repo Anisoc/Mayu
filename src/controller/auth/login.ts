@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const login: RequestHandler = async (req, res) => {
   const user = await getUserByEmail(req.body.email);
 
-  if (user) {
+  if (user.length == 1) {
     const result = await bcrypt.compare(req.body.password, user[0].password);
     if (result) {
       const at = jwt.sign({ sub: user[0].id }, process.env.SEED, {
