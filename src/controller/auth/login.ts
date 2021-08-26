@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { getUserByEmail, arrappend, delToken } from "@redis";
+import { getUserByEmail, arrappend } from "@redis";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -16,8 +16,9 @@ export const login: RequestHandler = async (req, res) => {
         expiresIn: "7d",
       });
 
-      arrappend("tokens", ".", [JSON.stringify(rt)]);
-      await delToken(rt);
+      arrappend("tokens", ".", [JSON.stringify(rt)]).catch(async (err) => {
+        throw err;
+      });
 
       return res.json({
         id: user[0].id,
