@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { getUserByEmail, arrappend } from "@redis";
-import { user as isUser } from "@models";
+import { isUser } from "@models";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 

@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { user as isUser } from "@models";
+import { isUser } from "@models";
 import { getUserByEmail, getUserByUsername, arrappend } from "@redis";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";

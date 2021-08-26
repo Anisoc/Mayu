@@ -46,4 +46,4 @@ const schema: JSONSchemaType<Post> = {
 };
 
 // validate is a type guard for MyData - type is inferred from schema type
-export const post = ajv.compile(schema);
+export const isPost = ajv.compile(schema);

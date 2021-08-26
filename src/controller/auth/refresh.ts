@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { getUserById, getToken, arrappend, delToken } from "@redis";
+import { isUser } from "@models";
 import jwt from "jsonwebtoken";
 
 export const refresh: RequestHandler = async (req, res) => {
@@ -11,12 +12,10 @@ export const refresh: RequestHandler = async (req, res) => {
         return res.sendStatus(403);
       }
 
-      const users = await getUserById(token.sub);
+      const user = await (await getUserById(token.sub)).shift();
       const t = await getToken(req.body.refreshToken);
 
-      if (users.length == 1 && !(t instanceof Array)) {
-        const user = users[0];
-
+      if (isUser(user) && !(t instanceof Array)) {
         const at = jwt.sign({ sub: user.id }, process.env.SEED, {
           expiresIn: "120m",
         });

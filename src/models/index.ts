@@ -5,5 +5,5 @@ const ajv = new Ajv({ allErrors: true });
 addFormats(ajv);
 
 export default ajv;
-export { user } from "@models/user";
-export { post } from "@models/post";
+export { isUser } from "@models/user";
+export { isPost } from "@models/post";

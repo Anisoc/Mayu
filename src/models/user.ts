@@ -25,4 +25,4 @@ const schema: JSONSchemaType<User> = {
 };
 
 // validate is a type guard for MyData - type is inferred from schema type
-export const user = ajv.compile(schema);
+export const isUser = ajv.compile(schema);

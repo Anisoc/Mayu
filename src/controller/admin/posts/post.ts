@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { post as isPost } from "@models";
 import { getUserById, arrappend } from "@redis";
-import { user as isUser } from "@models";
+import { isUser } from "@models";
 import jwt from "jsonwebtoken";
 
 export const post: RequestHandler = async (req, res) => {
