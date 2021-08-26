@@ -6,3 +6,4 @@ addFormats(ajv);
 
 export default ajv;
 export { user } from "@models/user";
+export { post } from "@models/post";
