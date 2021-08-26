@@ -23,7 +23,7 @@ const main = async () => {
       secret: process.env.SEED,
       algorithms: ["HS256"],
     }).unless({
-      path: ["/auth/login", "/auth/register", "/auth/refresh", "posts"],
+      path: ["/auth/login", "/auth/register", "/auth/refresh", "/posts"],
     })
   );
 
