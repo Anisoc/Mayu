@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { getUserById, getToken, arrappend, delToken } from "database/redis";
+import { getUserById, getToken, arrappend, delToken } from "@redis";
 import jwt from "jsonwebtoken";
 
 export const refresh: RequestHandler = async (req, res) => {
