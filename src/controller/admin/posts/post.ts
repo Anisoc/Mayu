@@ -11,8 +11,22 @@ export const post: RequestHandler = async (req, res) => {
     if (token.sub) {
       const user = await getUserById(token.sub);
       if (isUser(user)) {
+        if (user.admin) {
+          let post = req.body;
+          post = {
+            id: uuidv4(),
+            ...post,
+            timestamp: `${new Date().toISOString()}`,
+          };
+
+          if (isPost(post)) {
+            // TODO: send post to discord, github, and facebook
+            // TODO: add post to database with platforms IDs
+          }
+        }
+        return res.sendStatus(403);
       }
-      res.json(user);
     }
+    return res.json({ error: "Oops something went wrong!" });
   });
 };
