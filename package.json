@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "npx -y ts-node -r tsconfig-paths/register src/index.ts",
-    "dev": "npx -y ts-node-dev --poll --respawn -r tsconfig-paths/register ./src/index.ts"
+    "dev": "npx -y ts-node-dev --poll --respawn -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./build"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "prettier": "^2.3.2",
     "standard-version": "^9.3.0",
     "ts-node-dev": "^1.1.8",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.3.5"
   }
 }
