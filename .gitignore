@@ -105,3 +105,6 @@ dist
 
 # enviroment file, containing seed for jwt
 *.env
+
+# Build folder
+build/

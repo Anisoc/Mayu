@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "types": ["node"],
     "sourceMap": true,
     "paths": {
       "@controller/*": ["controller/*"],
