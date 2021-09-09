@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { posts } from "@controller/posts";
 import { disconnect, connect } from "@redis";
 import { init } from "@init";
@@ -8,11 +8,15 @@ import nocache from "nocache";
 import eJwt from "express-jwt";
 
 const main = async () => {
-  await connect();
+  await connect()
+    .then(async (res) => {
+      await init();
+    })
+    .catch((err) => {
+      throw err;
+    });
   const app = express();
   const port = process.env.PORT;
-
-  await init();
 
   app.set("etag", false);
   app.use(nocache());

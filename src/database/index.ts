@@ -1,5 +1,12 @@
 import { ReJSON, Redisearch } from "redis-modules-sdk";
 export { get, set, arrappend } from "@redis/json";
+export {
+  getUserByEmail,
+  getToken,
+  delToken,
+  getUserById,
+  getUserByUsername,
+} from "@redis/search";
 
 const client = {
   json: new ReJSON({
