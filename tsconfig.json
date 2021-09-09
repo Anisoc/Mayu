@@ -24,7 +24,8 @@
       "@posts/*": ["controller/admin/posts/*"],
       "@admin": ["controller/admin/index"],
       "@admin/*": ["controller/admin/*"],
-      "@redis": ["database/redis"]
+      "@redis": ["database/index"],
+      "@redis/*": ["database/*"]
     }
   },
   "include": ["./src"]

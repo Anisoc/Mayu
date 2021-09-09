@@ -19,5 +19,5 @@ services:
     env_file:
       - .env
   db:
-    image: redislabs/rejson
+    image: redislabs/redismod
     restart: always
