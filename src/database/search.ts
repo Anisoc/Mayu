@@ -17,10 +17,13 @@ export const getUserByUsername = async (username) => {
 };
 
 export const getToken = async (token) => {
+  console.log(await client.search.search("token-idx", token));
   const tokens = JSON.parse(await client.json.get("tokens", "."));
   const res = jp.paths(tokens, `$[?(@=="${token}")]`);
-  const index = parseInt(`${res[0][1]}`);
-  if (typeof index === "number" && index % 1 === 0) return index;
+  if (res.length > 0) {
+    const index = parseInt(`${res[0][1]}`);
+    if (typeof index === "number" && index % 1 === 0) return index;
+  }
   return [];
 };
 
